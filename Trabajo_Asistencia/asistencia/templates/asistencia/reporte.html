@@ -1,0 +1,181 @@
+{% extends 'asistencia/base.html' %}
+
+{% block contenido %}
+
+<h1>Reporte General</h1>
+
+<form method="GET" style="margin-bottom:20px;">
+
+    <label><strong>Mes:</strong></label>
+
+    <select name="mes"
+            style="
+                padding:8px;
+                border-radius:8px;
+                background:#1e293b;
+                color:white;
+                border:1px solid #475569;
+            ">
+
+        <option value="todos">Todos</option>
+
+        <option value="1">Enero</option>
+        <option value="2">Febrero</option>
+        <option value="3">Marzo</option>
+        <option value="4">Abril</option>
+        <option value="5">Mayo</option>
+        <option value="6">Junio</option>
+        <option value="7">Julio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+
+    </select>
+
+    &nbsp;&nbsp;
+
+    <label><strong>Año:</strong></label>
+
+    <select name="anio"
+            style="
+                padding:8px;
+                border-radius:8px;
+                background:#1e293b;
+                color:white;
+                border:1px solid #475569;
+            ">
+
+        <option value="todos">Todos</option>
+
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+
+    </select>
+
+    &nbsp;&nbsp;
+
+    <button type="submit"
+            style="
+                padding:8px 15px;
+                border:none;
+                border-radius:8px;
+                background:#2563eb;
+                color:white;
+                cursor:pointer;
+            ">
+        Filtrar
+    </button>
+
+</form>
+
+<div style="margin-bottom:20px;">
+
+    <a href="/reporte/excel/?mes={{ mes_actual }}&anio={{ anio_actual }}"
+       style="
+            background:#16a34a;
+            color:white;
+            text-decoration:none;
+            padding:10px 20px;
+            border-radius:8px;
+            display:inline-block;
+       ">
+        📊 Exportar Excel
+    </a>
+
+</div>
+
+<table>
+
+    <tr>
+        <th>Empleado</th>
+        <th>Fecha y Hora</th>
+        <th>Tipo</th>
+    </tr>
+
+    {% for fila in filas %}
+
+    <tr>
+
+        <td>{{ fila.empleado }}</td>
+
+        <td>{{ fila.fecha }}</td>
+
+        <td>
+
+            {% if fila.tipo == "ENTRADA" %}
+
+                <span class="badge-dentro">
+                    ENTRADA
+                </span>
+
+            {% elif fila.tipo == "SALIDA" %}
+
+                <span class="badge-fuera">
+                    SALIDA
+                </span>
+
+            {% elif fila.tipo == "ENTRADA_DESCANSO" %}
+
+                <span style="
+                    background:#3b82f6;
+                    padding:8px 16px;
+                    border-radius:8px;
+                    font-weight:bold;
+                ">
+                    ENTRADA DESCANSO
+                </span>
+
+            {% elif fila.tipo == "SALIDA_DESCANSO" %}
+
+                <span style="
+                    background:#f59e0b;
+                    padding:8px 16px;
+                    border-radius:8px;
+                    font-weight:bold;
+                ">
+                    SALIDA DESCANSO
+                </span>
+
+            {% elif fila.tipo == "ENTRADA_TE" %}
+
+                <span style="
+                    background:#8b5cf6;
+                    padding:8px 16px;
+                    border-radius:8px;
+                    font-weight:bold;
+                ">
+                    ENTRADA T.E.
+                </span>
+
+            {% elif fila.tipo == "SALIDA_TE" %}
+
+                <span style="
+                    background:#6b7280;
+                    padding:8px 16px;
+                    border-radius:8px;
+                    font-weight:bold;
+                ">
+                    SALIDA T.E.
+                </span>
+
+            {% else %}
+
+                {{ fila.tipo }}
+
+            {% endif %}
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Estado del Personal</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial, Helvetica, sans-serif;
+            margin:40px;
+        }
+
+        h1{
+            margin-bottom:25px;
+        }
+
+        .menu{
+            display:flex;
+            gap:15px;
+            margin-bottom:30px;
+        }
+
+        .menu a{
+            background:#1e293b;
+            color:white;
+            text-decoration:none;
+            padding:12px 20px;
+            border-radius:10px;
+            width:auto;
+        }
+
+        .menu a:hover{
+            background:#334155;
+            color:white;
+        }
+
+        .contenedor{
+            display:flex;
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .card{
+            padding:15px 25px;
+            border-radius:12px;
+            font-size:20px;
+            font-weight:bold;
+        }
+
+        .dentro{
+            background:#15803d;
+        }
+
+        .fuera{
+            background:#b91c1c;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#1e293b;
+        }
+
+        th{
+            background:#334155;
+            padding:15px;
+            text-align:center;
+        }
+
+        td{
+            padding:15px;
+            border-top:1px solid #475569;
+            text-align:center;
+        }
+
+        .badge-dentro{
+            background:#22c55e;
+            padding:8px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            display:inline-block;
+            min-width:120px;
+        }
+
+        .badge-fuera{
+            background:#ef4444;
+            padding:8px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            display:inline-block;
+            min-width:120px;
+        }
+
+        .empleado-link{
+            color:white;
+            text-decoration:none;
+        }
+
+        .empleado-link:hover{
+            color:#38bdf8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="menu">
+
+        <a href="/">Inicio</a>
+
+        <a href="/estado/">Estado</a>
+
+        <a href="/reporte/">Reporte</a>
+
+        <a href="/admin/">Admin</a>
+
+    </div>
+
+    <h1>Estado Actual del Personal</h1>
+
+    <div class="contenedor">
+
+        <div class="card dentro">
+            🟢 Dentro: {{ dentro }}
+        </div>
+
+        <div class="card fuera">
+            🔴 Fuera: {{ fuera }}
+        </div>
+
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Empleado</th>
+            <th>Estado</th>
+        </tr>
+
+        {% for empleado in empleados %}
+
+        <tr>
+
+            <td>
+                <a class="empleado-link"
+                   href="/empleado/{{ empleado.id }}/">
+                    {{ empleado.nombre }}
+                </a>
+            </td>
+
+            <td>
+
+                {% if empleado.estado == "DENTRO" %}
+
+                    <span class="badge-dentro">
+                        DENTRO
+                    </span>
+
+                {% else %}
+
+                    <span class="badge-fuera">
+                        FUERA
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+
+</html>

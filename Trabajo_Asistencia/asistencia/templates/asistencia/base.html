@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Sistema de Asistencia</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial, Helvetica, sans-serif;
+            margin:40px;
+        }
+
+        h1{
+            margin-bottom:25px;
+        }
+
+        .menu{
+            display:flex;
+            gap:15px;
+            margin-bottom:30px;
+        }
+
+        .menu a{
+            background:#1e293b;
+            color:white;
+            text-decoration:none;
+            padding:12px 20px;
+            border-radius:10px;
+            transition:.2s;
+        }
+
+        .menu a:hover{
+            background:#334155;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:#1e293b;
+            border-radius:12px;
+            overflow:hidden;
+        }
+
+        th{
+            background:#334155;
+            padding:15px;
+            text-align:center;
+        }
+
+        td{
+            padding:15px;
+            border-top:1px solid #475569;
+            text-align:center;
+        }
+
+        a{
+            color:white;
+            text-decoration:none;
+        }
+
+        .badge-dentro{
+            background:#22c55e;
+            padding:8px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            display:inline-block;
+            min-width:120px;
+        }
+
+        .badge-fuera{
+            background:#ef4444;
+            padding:8px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            display:inline-block;
+            min-width:120px;
+        }
+
+        .card{
+            background:#1e293b;
+            padding:25px;
+            border-radius:12px;
+            margin-bottom:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="menu">
+
+        <a href="/">Inicio</a>
+
+        <a href="/estado/">Estado</a>
+
+        <a href="/reporte/">Reporte</a>
+
+        <a href="/admin/">Admin</a>
+
+    </div>
+
+    {% block contenido %}
+    {% endblock %}
+
+</body>
+
+</html>
